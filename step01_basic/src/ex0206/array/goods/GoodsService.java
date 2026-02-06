@@ -81,9 +81,9 @@ public class GoodsService{
 	           없으면 null 리턴
    */
    public Goods selectByCode(String code){
-       for(int i = 0; i < count; i++) {
-    	   if(goodsArr[i].getCode().equals(code))   return goodsArr[i];
-       }
+	   
+	   int index = indexOf(code);
+	   if(index >= 0) return goodsArr[index];
        
        return null;
    }
@@ -109,11 +109,29 @@ public class GoodsService{
     * @param String code 
     * @return : true면 삭제 완료, false면 삭제 실패
     * */
-   public boolean delete(String code) {
-	   // 코드랑 일치하는 객체가 있는지 탐색 후, 없으면 삭제 실패
-	   if(selectByCode(code) != null) return false;
+   	public boolean delete(String code) {
+   		int index = indexOf(code);
+   		// 코드랑 일치하는 객체가 있는지 탐색 후, 없으면 삭제 실패
+ 	    if(index <= 0) return false;
 	   
-	   
+ 	    for(int i = index; i < count - 1; i++) {
+ 	    	goodsArr[index] = goodsArr[index+1];
+ 	    }
+
+ 	   goodsArr[count-1] = null;
+ 	   count--;
+ 	    
+ 	   
 	   return true;
    }
+   	
+   	
+   	private int indexOf(String code) {
+        for(int i = 0; i < count; i++) {
+     	   if(goodsArr[i].getCode().equals(code)) {
+     		   return i;
+     	   }
+        }
+        return -1;
+   	}
 }
