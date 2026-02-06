@@ -7,9 +7,32 @@ public class Goods{
 	private String name;//상품이름  null
 	private int price;//가격 0 
 	private String explain;//설명 null
+	
+	// GETTER ===========================
+	public String getCode() {
+		return code;
+	}
+	public String getName() {
+		return name;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public String getExplain() {
+		return explain;
+	}
+	// SETTER ===========================
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public void setExplain(String explain) {
+		this.explain = explain;
+	}
 
-	// getXX
-	
-	// setXX
-	
 }

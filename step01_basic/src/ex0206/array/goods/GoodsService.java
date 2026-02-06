@@ -1,5 +1,8 @@
 package ex0206.array.goods;
 /**
+ * 과제 : 빈 곳들의 기능을 채워라
+    수행자 : 송정현
+  	작성일자 : 26.02.06
   각 요청에 대한 로직(기능)을 담당할 클래스
   (등록 , 전체검색, 부분검색, 수정, 삭제 등등.....)
 */
@@ -8,8 +11,6 @@ public class GoodsService{
 	//상품을 관리할 배열 선언
 	private Goods [] goodsArr = new Goods [10];
 	public static int count;//0 배열방에 저장 객체의 개수 
-
-
 
    /**
       초기치 데이터를 세팅하는 메소드
@@ -23,23 +24,26 @@ public class GoodsService{
 		};
    */
    public void init(String [][] data){
-	  
-	   
-
+	  for(String[] goods : data) {
+		  goodsArr[count++] = create(goods);
+	  }
    }//메소드끝
 
 
    /**
-      Goods를 생성해서 값을 설정하고 생성된 Goos를 리턴하는 메소드 
+      Goods를 생성해서 값을 설정하고 생성된 Goods를 리턴하는 메소드 
    */
-   private Goods create(String [] row){//{"A01" , "새우깡" , "2500" , "짜고 맛나다."}
-         
-
-		 return null;
+   private Goods create(String [] row){
+	   //{"A01" , "새우깡" , "2500" , "짜고 맛나다."}
+	   Goods goods = new Goods();
+	   
+	   goods.setCode(row[0]);
+	   goods.setName(row[1]);
+	   goods.setPrice(Integer.parseInt(row[2]));
+	   goods.setExplain(row[3]);
+	   
+	   return goods;
    }
-
-
-
 
 
    /**
@@ -52,13 +56,15 @@ public class GoodsService{
    public int insert(Goods goods){
 
 	   // 배열의 길이 체크
-	   
+	   if(count == goodsArr.length) return -1;
 
 	   //중복체크 
-	 
-
-	  
-      return 0;
+	   String code = goods.getCode();
+	   if(selectByCode(code) != null) return 0;
+	   
+	   //문제없을 시
+	   goodsArr[count++] = goods;
+	   return 1;
    }
 
 
@@ -66,8 +72,7 @@ public class GoodsService{
      전체검색
    */
    public Goods[]  selectAll( ){
-     
-      return null;//
+      return goodsArr;
    }
 
    /**
@@ -76,7 +81,9 @@ public class GoodsService{
 	           없으면 null 리턴
    */
    public Goods selectByCode(String code){
-       
+       for(int i = 0; i < count; i++) {
+    	   if(goodsArr[i].getCode().equals(code))   return goodsArr[i];
+       }
        
        return null;
    }
@@ -87,7 +94,26 @@ public class GoodsService{
 	@return : true이면 수정완료, false이면 수정실패
    */
    public boolean update(Goods goods){ //수정하려는 코드, 변경값 - 가격, 설명
-      
-       return false;
+	   Goods foundGoods = selectByCode(goods.getCode());
+	   if(foundGoods == null) return false;
+	   else {
+		   foundGoods.setPrice(goods.getPrice());
+		   foundGoods.setExplain(goods.getExplain());
+		   
+	       return true;
+	   }
+   }
+   
+   /**
+    * 상품코드에 해당하는 객체 삭제하기
+    * @param String code 
+    * @return : true면 삭제 완료, false면 삭제 실패
+    * */
+   public boolean delete(String code) {
+	   // 코드랑 일치하는 객체가 있는지 탐색 후, 없으면 삭제 실패
+	   if(selectByCode(code) != null) return false;
+	   
+	   
+	   return true;
    }
 }

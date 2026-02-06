@@ -15,8 +15,7 @@ public class MenuView{
 
       //전달 받은 초기치 데이터를 서비스에 전달해서 배열에 저장한다.
       service.init(data);
-
-
+      
 	  while(true){
          System.out.println("---------------------------------------------------------------------------");
 		 System.out.println("1.등록     2.전체검색      3.상품코드검색    4. 수정하기     9.종료");
@@ -37,7 +36,7 @@ public class MenuView{
 			 case 4 : 
 				 this.inputUpdate() ; break;
 			 case 9 : 
-				 System.out.println("다음에 또 이용해ㅜㅈ세요. 프로그램 종료합니다.");
+				 System.out.println("다음에 또 이용해주세요. 프로그램 종료합니다.");
 				 System.exit(0); 
 			 break;
 			 default: System.out.println("메뉴는 1~4 or 9 만 입력해주세요.");
@@ -52,6 +51,8 @@ public class MenuView{
      등록관련 키보드 입력
   */
   public void inputInsert(){
+	  Goods goods = new Goods();
+	  
        //키보드입력 4개 받기 
 	   System.out.print("상품코드 > ");
 	   String code = sc.nextLine();
@@ -64,8 +65,13 @@ public class MenuView{
 
 	   System.out.print("상품설명 > ");
 	   String explain = sc.nextLine();
-
-	   int result = service.insert(null);
+	   
+	   goods.setCode(code);
+	   goods.setName(name);
+	   goods.setPrice(price);
+	   goods.setExplain(explain);
+	   
+	   int result = service.insert(goods);
 
 	   if(result==-1)
 		  EndView.printMessage("더이상 등록할 수 없습니다.");
@@ -94,6 +100,8 @@ public class MenuView{
     수정하기 키보드 입력 
   */
   public void inputUpdate(){
+	   Goods goods = new Goods();
+	  
        //키보드입력 4개 받기 
 	   System.out.print("수정하려는 상품코드 > ");
 	   String code = sc.nextLine();
@@ -105,8 +113,12 @@ public class MenuView{
 	   String explain = sc.nextLine();
 
 	   //위 3개의 정보를 하나의 Goods객체로 만든다.
-
-	   if(service.update(null) ){
+	   goods.setCode(code);
+	   goods.setPrice(price);
+	   goods.setExplain(explain);
+	   
+	   
+	   if(service.update(goods) ){
           EndView.printMessage("상품이 수정되었습니다.");
 	   }else{
           EndView.printMessage("상품이 수정되지않았습니다.");

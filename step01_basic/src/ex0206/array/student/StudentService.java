@@ -13,8 +13,8 @@ public class StudentService {
 	 * 초기치데이터 3명 정도 세팅하기 
 	 * */
 	public void init(String[][] data) {
-		for(String[] st : data) {
-			stArr[count++] = createStudent(st);
+		for(String[] student : data) {
+			stArr[count++] = createStudent(student);
 		}
 		System.out.println("***초기화 완료***");
 //		for(int i = 0; i < count; i++) {
