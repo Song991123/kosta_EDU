@@ -125,7 +125,11 @@ public class GoodsService{
 	   return true;
    }
    	
-   	
+   	/**
+   	 * 들어온 code와 일치하는 index값을 return하는 메소드
+   	 * @param code 상품코드값
+   	 * @return 인덱스 값
+   	 * */
    	private int indexOf(String code) {
         for(int i = 0; i < count; i++) {
      	   if(goodsArr[i].getCode().equals(code)) {
