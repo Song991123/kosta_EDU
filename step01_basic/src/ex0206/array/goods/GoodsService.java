@@ -112,14 +112,13 @@ public class GoodsService{
    	public boolean delete(String code) {
    		int index = indexOf(code);
    		// 코드랑 일치하는 객체가 있는지 탐색 후, 없으면 삭제 실패
- 	    if(index <= 0) return false;
+ 	    if(index < 0) return false;
 	   
  	    for(int i = index; i < count - 1; i++) {
  	    	goodsArr[index] = goodsArr[index+1];
  	    }
 
- 	   goodsArr[count-1] = null;
- 	   count--;
+ 	   goodsArr[--count] = null;
  	    
  	   
 	   return true;
