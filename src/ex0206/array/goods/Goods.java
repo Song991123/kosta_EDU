@@ -8,6 +8,25 @@ public class Goods{
 	private int price;//가격 0 
 	private String explain;//설명 null
 	
+	/**
+	 * 등록용 생성자 추가
+	 * */
+	public Goods(String code, String name, int price, String explain) {
+		this.code    = code;
+		this.name   = name;
+		this.price    = price;
+		this.explain = explain;
+	}
+	/**
+	 * 수정용 생성자 추가
+	 * */
+	public Goods(String code, int price, String explain) {
+		this.code    = code;
+		this.price    = price;
+		this.explain = explain;
+	}
+	
+	
 	// GETTER ===========================
 	public String getCode() {
 		return code;

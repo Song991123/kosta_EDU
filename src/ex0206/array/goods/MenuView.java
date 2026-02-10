@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class MenuView{
 
  private Scanner sc = new Scanner(System.in);
- private GoodsService service = new GoodsService(); //전역변수 초기화
+ private GoodsService service;  //전역변수 초기화
 
   /**
     전체 메뉴를 출력하는 메소드 
@@ -14,7 +14,7 @@ public class MenuView{
   public void printMenu(String [][] data){
 
       //전달 받은 초기치 데이터를 서비스에 전달해서 배열에 저장한다.
-      service.init(data);
+      service = new GoodsService(data);
       
 	  while(true){
 		  String menu =
@@ -53,7 +53,7 @@ public class MenuView{
      등록관련 키보드 입력
   */
   public void inputInsert(){
-	  Goods goods = new Goods();
+	  
 	  
        //키보드입력 4개 받기 
 	   System.out.print("상품코드 > ");
@@ -67,10 +67,7 @@ public class MenuView{
 	   System.out.print("상품설명 > ");
 	   String explain = sc.nextLine();
 	   
-	   goods.setCode(code);
-	   goods.setName(name);
-	   goods.setPrice(price);
-	   goods.setExplain(explain);
+	   Goods goods = new Goods(code, name, price, explain);
 	   
 	   int result = service.insert(goods);
 
@@ -101,7 +98,7 @@ public class MenuView{
     수정하기 키보드 입력 
   */
   public void inputUpdate(){
-	   Goods goods = new Goods();
+	   
 	  
        //키보드입력 4개 받기 
 	   System.out.print("수정하려는 상품코드 > ");
@@ -114,9 +111,7 @@ public class MenuView{
 	   
 	   
 	   //위 3개의 정보를 하나의 Goods객체로 만든다.
-	   goods.setCode(code);
-	   goods.setPrice(price);
-	   goods.setExplain(explain);
+	   Goods goods = new Goods(code, price, explain);
 	   
 	   
 	   if(service.update(goods) ){
