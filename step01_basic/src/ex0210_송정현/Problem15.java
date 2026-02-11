@@ -28,7 +28,7 @@ class MemberService {
 	 * @return 로그인 성공여부
 	 * */
 	public boolean login(String id, String password) {
-		if(id.equals("hong") && password.equals("12345")) {
+		if("hong".equals(id) && "12345".equals(password)) {
 			return true;
 		}
 		return false;
