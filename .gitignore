@@ -1,5 +1,24 @@
-/bin/
-.classpath
-.project
-.settings/
-.gitignore
+# =========================
+# Java build output
+# =========================
+**/bin/
+**/out/
+**/target/
+
+# =========================
+# Eclipse / IDE files
+# =========================
+**/.classpath
+**/.project
+**/.settings/
+
+# =========================
+# OS junk files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Allow src only
+# =========================
+!**/src/
