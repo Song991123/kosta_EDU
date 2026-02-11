@@ -9,13 +9,17 @@ public class Goods{
 	private String explain;//설명 null
 	
 	/**
+	 * 기본생성자
+	 * */
+	public Goods() {
+		
+	}
+	/**
 	 * 등록용 생성자 추가
 	 * */
 	public Goods(String code, String name, int price, String explain) {
-		this.code    = code;
-		this.name   = name;
-		this.price    = price;
-		this.explain = explain;
+		this(code, price, explain); // 같은 부분이 있으니 재사용
+		this.name    = name;
 	}
 	/**
 	 * 수정용 생성자 추가

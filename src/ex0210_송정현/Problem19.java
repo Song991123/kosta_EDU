@@ -32,8 +32,8 @@ class Account{
 	 * 조건 2. 0과 1,000,000은 MIN_BALANCE, MAX_BALANCE 상수를 선언해 이용
 	 * */
 	// 상수 필드 ====================
-	private int MIN_BALANCE  = 0;
-	private int MAX_BALANCE = 1000000;
+	private final int MIN_BALANCE  = 0;
+	private final int MAX_BALANCE = 1000000;
 	
 	// 필드 =======================
 	private int balance;

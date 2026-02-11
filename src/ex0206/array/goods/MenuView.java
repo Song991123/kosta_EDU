@@ -8,13 +8,17 @@ public class MenuView{
  private Scanner sc = new Scanner(System.in);
  private GoodsService service;  //전역변수 초기화
 
+ public MenuView(String [][] data) {
+	//전달 받은 초기치 데이터를 서비스에 전달해서 배열에 저장한다.
+     service = new GoodsService(data);
+     printMenu( );
+ }
   /**
     전체 메뉴를 출력하는 메소드 
   */
-  public void printMenu(String [][] data){
+  public void printMenu(){
 
-      //전달 받은 초기치 데이터를 서비스에 전달해서 배열에 저장한다.
-      service = new GoodsService(data);
+      
       
 	  while(true){
 		  String menu =
