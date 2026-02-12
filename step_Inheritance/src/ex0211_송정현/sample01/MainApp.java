@@ -130,19 +130,23 @@ class FullTime{
 		System.out.println(eName + "은 정규직입니다.");
 	}
 	
+	@Override
 	public String toString() {
-		return String.format(" %s | %s | %s | %s | %s | %s | %s | %s ", 
-					empNo,
-					eName,
-					job,
-					mgr,
-					hiredate,
-					deptName,
-					salary,
-					bonus
-					);
+	    StringBuilder sb = new StringBuilder();
+
+	    sb.append(" ")
+	      .append(empNo).append(" | ")
+	      .append(eName).append(" | ")
+	      .append(job).append(" | ")
+	      .append(mgr).append(" | ")
+	      .append(hiredate).append(" | ")
+	      .append(deptName).append(" | ")
+	      .append(salary).append(" | ")
+	      .append(bonus)
+	      .append(" ");
+
+	    return sb.toString();
 	}
-	
 	
 }
 
@@ -226,15 +230,22 @@ class PartTime{
 			System.out.println(eName + "은 비정규직입니다.");
 		}
 		
+		@Override
 		public String toString() {
-			return String.format(" %s | %s | %s | %s | %s | %s", 
-						empNo,
-						eName,
-						job,
-						mgr,
-						deptName,
-						timePay);
+		    StringBuilder sb = new StringBuilder();
+
+		    sb.append(" ")
+		      .append(empNo).append(" | ")
+		      .append(eName).append(" | ")
+		      .append(job).append(" | ")
+		      .append(mgr).append(" | ")
+		      .append(deptName).append(" | ")
+		      .append(timePay)
+		      .append(" ");
+
+		    return sb.toString();
 		}
+
 		
 		
 		
