@@ -1,6 +1,6 @@
 package ex0211_송정현.sample02;
 
-public class Employee {
+public abstract class Employee {
 	// 필드 선언 ====================
 		private int 		empNo;
 		private String 	eName;
@@ -67,9 +67,7 @@ public class Employee {
 			// ==========================/
 			
 			// METHOD ========================
-			public void message() {
-				System.out.println(eName + "은 직원입니다.");
-			}
+			public abstract void message();
 			
 			@Override
 			public String toString() {
