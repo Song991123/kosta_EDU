@@ -20,7 +20,12 @@ public class Audio extends Elec implements ElecFunction {
 	// METHOD ========================
 	@Override
 	public void start() {
-		
+		StringBuilder builder = new StringBuilder();
+		builder.append(super.getCode());
+		builder.append("의 Audio를 ");
+		builder.append(volume);
+		builder.append("으로 듣는다.");
+		System.out.println(builder);
 	}
 
 
@@ -28,7 +33,7 @@ public class Audio extends Elec implements ElecFunction {
 	public void stop() {
 		
 	}
-
+	
 	@Override
 	public void display() {
 		
@@ -37,12 +42,22 @@ public class Audio extends Elec implements ElecFunction {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(super.getCode());
-		builder.append("의 Audio를 ");
+		builder.append("Audio [volume=");
 		builder.append(volume);
-		builder.append("으로 듣는다.");
-		
+		builder.append(", getCode()=");
+		builder.append(getCode());
+		builder.append(", getCost()=");
+		builder.append(getCost());
+		builder.append(", toString()=");
+		builder.append(super.toString());
+		builder.append(", getClass()=");
+		builder.append(getClass());
+		builder.append(", hashCode()=");
+		builder.append(hashCode());
+		builder.append("]");
 		return builder.toString();
 	}
+	
+
 	// =============================/
 }

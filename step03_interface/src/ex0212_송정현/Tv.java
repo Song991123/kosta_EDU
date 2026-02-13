@@ -23,7 +23,13 @@ public class Tv extends Elec implements ElecFunction {
 	// METHOD ========================
 	@Override
 	public void start() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(super.getCode());
+		builder.append("제품 TV를 ");
+		builder.append(channel);
+		builder.append("로 본다");
 		
+		System.out.println(builder);
 	}
 
 	@Override
@@ -41,13 +47,23 @@ public class Tv extends Elec implements ElecFunction {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(super.getCode());
-		builder.append("제품 TV를 ");
+		builder.append("Tv [channel=");
 		builder.append(channel);
-		builder.append("로 본다");
-		
+		builder.append(", getCode()=");
+		builder.append(getCode());
+		builder.append(", getCost()=");
+		builder.append(getCost());
+		builder.append(", toString()=");
+		builder.append(super.toString());
+		builder.append(", getClass()=");
+		builder.append(getClass());
+		builder.append(", hashCode()=");
+		builder.append(hashCode());
+		builder.append("]");
 		return builder.toString();
 	}
+	
+
 	
 	// =============================/
 }
