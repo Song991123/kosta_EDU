@@ -1,0 +1,19 @@
+package ex0219.exam04;
+
+public class Box<T> {
+	private T content;
+
+	public T getContent() {
+		return content;
+	}
+
+	public void setContent(T content) {
+		this.content = content;
+	}
+	
+	// 제네릭 메소드
+	public <A, B> T test(A a, B b) {
+		return null;
+	}
+	
+}
