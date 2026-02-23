@@ -1,8 +1,8 @@
 package ex0220_송정현;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 
 /**
@@ -28,18 +28,13 @@ class LottoService{
      *
      * @return 생성된 로또 번호 리스트
      */
-	public List<Integer> lottoNumberListGenerator() {
-		List<Integer> lottoNumberList = new ArrayList<>(6);
+	public Set<Integer> lottoNumberListGenerator() {
+		Set<Integer> lottoNumberList = new TreeSet<>(Collections.reverseOrder());
 		
 		while(lottoNumberList.size() < 6) {
 			int randomNumber = (int)(Math.random()*45) + 1;
-			
-			if(!lottoNumberList.contains(randomNumber)) {
-				lottoNumberList.add(randomNumber);
-			}
+			lottoNumberList.add(randomNumber);
 		}
-		
-		Collections.sort(lottoNumberList, Collections.reverseOrder());
 		
 		return lottoNumberList;
 	}
