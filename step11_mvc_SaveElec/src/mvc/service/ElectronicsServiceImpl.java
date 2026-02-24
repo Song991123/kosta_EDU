@@ -1,5 +1,6 @@
 package mvc.service;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -27,6 +28,8 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 	private static ElectronicsService instance = new ElectronicsServiceImpl(); 
 	private static final int MAX_SIZE=6;
 	List<Electronics> list = new ArrayList<Electronics>();
+	
+	private File file;
 
 
 	/** 
@@ -35,11 +38,15 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 	 * 초기치 데이터를 만든다.
 	 */
 	private ElectronicsServiceImpl() {
-		File file = new File("data/list.txt");
+		System.out.println("user.dir = " + System.getProperty("user.dir"));
+		System.out.println("user.dir = " + System.getProperty("user.home"));
+		
+		
+		file = new File("data/list.txt");
 
 		// 만약 파일이 존재하면 불러오고
 		if(file.exists()) {
-			try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("data/list.txt"))) {
+			try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
 				list = (List<Electronics>)ois.readObject();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -51,7 +58,6 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 				String value =  rb.getString(key);
 
 				String data[] = value.split(",");
-				//System.out.println(key +" = " + value);
 				Electronics elec =  new Electronics( 
 						Integer.parseInt(data[0]) ,data[1],   
 						Integer.parseInt( data[2]), data[3]);
@@ -183,13 +189,13 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 
 
 	@Override
-	public void saveObject() {
+	public void saveObject() throws Exception{
+		
+		
 	    File dir = new File("data");
 	    if (!dir.exists()) dir.mkdirs();
-
-	    File file = new File(dir, "list.txt");
 		
-		try(ObjectOutputStream oos =	new ObjectOutputStream(new FileOutputStream("data/list.txt"))) {
+		try(ObjectOutputStream oos =	new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(file)))) {
 			oos.writeObject(list);
 		} catch (Exception e) {
 			e.printStackTrace();

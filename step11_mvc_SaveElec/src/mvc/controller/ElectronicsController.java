@@ -109,8 +109,13 @@ public class ElectronicsController {
     /////////////////////////////////////////////////////////////////
     
     public void saveObject() {
-    	service.saveObject();
-    	SuccessView.printMessage("저장되었습니다.");
+    	try {
+        	service.saveObject();
+        	SuccessView.printMessage("저장되었습니다.");
+    	}catch (Exception e) {
+    		FailView.errorMessage(e.getMessage());
+		}
+
     }
 }
 

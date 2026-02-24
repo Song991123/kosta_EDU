@@ -73,7 +73,7 @@ public interface ElectronicsService {
     
     
     ///// 종료했을때 해야할 일( 객체(List)를 파일에 저장)///////////////////////////
-    public void saveObject();
+    public void saveObject() throws Exception;
 }
 
 
