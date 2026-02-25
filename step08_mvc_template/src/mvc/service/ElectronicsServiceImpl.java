@@ -102,7 +102,7 @@ public class ElectronicsServiceImpl implements ElectronicsService {
 		List<Electronics> copyList = new ArrayList<>(list);
 		Collections.sort(copyList);
 //		Collections.sort(copyList , (a,b)-> 
-//				a.getModelPrice() == b.getModelPrice() ? b.getModelNo()-a.getModelNo() : a.getModelPrice()-b.getModelPrice());
+//		a.getModelPrice() == b.getModelPrice() ? b.getModelNo()-a.getModelNo() : a.getModelPrice()-b.getModelPrice());
 		
 		return copyList;
 	}
