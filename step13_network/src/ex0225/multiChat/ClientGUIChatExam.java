@@ -90,9 +90,25 @@ public class ClientGUIChatExam  extends JFrame{
     	    br = new BufferedReader(new InputStreamReader(sk.getInputStream()));
     	    pw = new PrintWriter(sk.getOutputStream(),true);
     	    
-    	    //대화명 입력 창을 띄운다.
-    	    String name = JOptionPane.showInputDialog(this, "대화명을 입력하세요");
-    	    pw.println(name);
+    	    /*
+			// 대화명 입력 창을 띄운다.
+			String name = JOptionPane.showInputDialog(this, "대화명을 입력하세요"); 	// this: 부모프레임
+			// 창 무시 불가. 창에서 확인을 눌러야 메인 창에 접근 가능
+			 */
+			
+			// 이름 중복체크 시도
+			String name = null;
+			while (true) {
+				name = JOptionPane.showInputDialog(this, "대화명을 입력하세요");
+				pw.println(name);
+				
+				if ("false".equals(br.readLine())) {	// false : 중복이 아님
+					break;
+				}else {
+					JOptionPane.showMessageDialog(this, "대화명[" + name + "]이 존재합니다. 다시 입력하세요.");
+				}
+			}
+    	    
     	    
     	    setTitle("["+name+"]");
     	 

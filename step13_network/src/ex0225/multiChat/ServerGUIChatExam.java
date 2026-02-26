@@ -66,27 +66,61 @@ public class ServerGUIChatExam {
 		
 		@Override
 		public void run() {
-			// 클라이언트가 보내온 내용을 읽어서 접속한 모든 클라이언트에게 전송한다.
 			try {
-				nickName = br.readLine(); //대화명 저장
+				/*
+				//읽기
+				nickName = br.readLine();	//닉네임 읽기
+				// 최초에 읽을 때: 닉네임, 이후에 읽을 때: 채팅내용
+				*/
 				
-				sendMessage("[" + nickName + "] 님이 입장하셨습니다.");
-				
-				while(true) {
-					String inputData = br.readLine();
-					sendMessage("[" + nickName + "]" + inputData);
+				// 닉네임 중복 체크
+				while (true) {
+					boolean isExist = false;	// 중복이면 true, 중복이 아니면 false
+					String newName = br.readLine();
+					
+					for (ClientskThread th : list) {
+						// Socket을 받고 바로 스레드를 list에 넣어서 자기 자신이 아니라는 것도 체크해야함
+						if ((this != th) && newName.equals(th.nickName)) {
+							// 이름이 중복일 때
+							isExist = true;
+							pw.println(isExist);
+							break;
+						}
+					}
+
+					if (!isExist) {
+						// 이름이 중복이 아닐 때 (client에 false 전달)
+						pw.println(isExist);
+						nickName = newName;
+						break;
+					}
 				}
+				
+				
+				
+				// 접속되어 있는 모든 client 에게 알린다.
+				sendMessage("----- [" + nickName + "]님이 입장하셨습니다. -----");
+				
+				while (true) {
+					String inputData = br.readLine();
+					sendMessage("[" + nickName + "] " + inputData);
+					
+				}
+				
 			} catch (Exception e) {
 				//e.printStackTrace();
-				// 현재 스레드에 문제 발생
-				// 현재 스레드를 list에서 제거
+				// client의 socket 이 끊기면 여기로 오게 된다.
 				
-				list.remove(this); // 내가 장애가 생겼으니 this로 나를 제거.
-				// 남아있는 클라이언트에게 알려준다.
-				sendMessage("[" + nickName + "]님이 퇴장하셨습니다");
+				// 현재 스레드를 list 에서 제거한다.
+				list.remove(this);
 				
-				// 서버 콘솔에 인원수 출력
-				System.out.println("[" + nickName + "]님 퇴장 | 현재 인원 = " + list.size() + "명");
+				// 남아있는 모든 클라이언트에게 알린다.
+				sendMessage("[" + nickName + "]님이 퇴장하셨습니다.");
+				
+				// 서버 콘솔 창에 출력한다.
+				System.out.println("[" + nickName + sk.getInetAddress() + "]님 퇴장."); 
+				System.out.println("현재 인원 = " + list.size());
+				
 			}
 		}
 	}
